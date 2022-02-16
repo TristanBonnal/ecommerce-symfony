@@ -10,6 +10,7 @@
 
     <!-- Bootstrap core CSS -->
     <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
     <style>
         .bd-placeholder-img {
             font-size: 1.125rem;
@@ -35,20 +36,19 @@
     </header>
 
     <main role="main">
-    {% if carousel is defined %}
-        {% include "_carousel.html.twig" %}
-    {% else %}
-        {% set margin = 'mt-5' %}
-    {% endif %}
+        {% if carousel is defined %}
+            {% include "_carousel.html.twig" %}
+        {% else %}
+            {% set margin = 'mt-5' %}
+        {% endif %}
         <div class="container marketing {{margin ?? 0}}">
             {% block body %}{% endblock %}
         </div><!-- /.container -->
-
+    </main>
         <!-- FOOTER -->
-        <footer class="container">
+        <footer class="footer-custom">
             {% include "_footer.html.twig" %}
         </footer>
-    </main>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="{{asset('assets/js/bootstrap.bundle.js')}}"></script>
 </body>
