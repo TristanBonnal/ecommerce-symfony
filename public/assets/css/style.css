@@ -3,10 +3,29 @@
     position: fixed;
     bottom: 0;
     width: 100%;
-    background-color: rgb(9, 36, 70);
+    background-color: rgb(222, 234, 248);
     box-shadow:5px 5px 7px 0.1rem black;
 }
 
+.footer-custom li {
+    list-style: none;
+}
+
 .navbar {
-    box-shadow:5px 5px 7px 0.1rem black;
+    box-shadow:0px 0px 10px 0.1rem black;
+}
+
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+@media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+    }
 }
