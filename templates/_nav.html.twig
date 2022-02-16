@@ -8,13 +8,25 @@
             <li class="nav-item active">
                 <a class="nav-link" href="{{ path('home') }}">Accueil <span class="sr-only">(current)</span></a>
             </li>
-                        <li class="nav-item active">
-                <a class="nav-link" href="{{ path('register') }}">S'inscrire <span class="sr-only">(current)</span></a>
-            </li>
         </ul>
-        <form class="form-inline mt-2 mt-md-0">
-            <input class="form-control mr-sm-2" type="text" placeholder="Par mots clés" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Rechercher</button>
-        </form>
+        <ul class="navbar-nav">
+            {% if app.user %}
+                <li class="nav-item active">
+                    <a class="nav-link fs-2" href="{{ path('account') }}">Mon compte<span class="sr-only">(current)</span></a>
+                </li> 
+                
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion<span class="sr-only">(current)</span></a>
+                </li>                
+            {% else %}
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ path('register') }}">Inscription<span class="sr-only">(current)</span></a>
+                </li> 
+                
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ path('app_login') }}">Connexion<span class="sr-only">(current)</span></a>
+                </li>                   
+            {% endif %}
+        </ul>
     </div>
 </nav>

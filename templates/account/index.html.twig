@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon compte - La Boot'Ique{% endblock %}
+
+{% block body %}
+    <h1>Mon compte</h1>
+    Bienvenue {{ app.user.firstname }} dans votre espace membre.
+    <hr>
+    {% for message in app.flashes('notice') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+    <div class="list-group">
+        <a href="{{ path('account_password') }}" class="list-group-item list-group-item-action">
+            Mes commandes
+        </a>
+        <a href="{{ path('account_password') }}" class="list-group-item list-group-item-action">
+            Gérer mes adresses
+        </a>
+        <a href="{{ path('account_password') }}" class="list-group-item list-group-item-action">
+            Modifier mot de passe
+        </a>
+    </div>
+
+
+{% endblock %}
