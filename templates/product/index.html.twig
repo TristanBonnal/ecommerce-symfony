@@ -5,7 +5,7 @@
 {% block body %}
 <div class="row">
     <div class="col-md-2">
-        <h3>Catégories</h3>
+        <h3 class="text-center">Catégories</h3>
         liste
     </div>
     <div class="col-md-10">
@@ -13,10 +13,12 @@
         <div class="row">
             {% for product in products %}
                 <div class="col-md-4">
-                    <a class="" href="{{ path('product_show', {slug: product.slug}) }}"><img class="img-fluid" src="/uploads/{{product.image}}" alt="{{product.name}}"></a>
-                    <h5>{{product.name}}</h5>
-                    <span class="product-subtitle">{{product.subtitle}}</span>
-                    <span class="product-price">{{(product.price / 100 )|number_format(2,',', '.')}} € </span>
+                    <div class="product-item">
+                        <a href="{{ path('product_show', {slug: product.slug}) }}"><img class="img-fluid" src="/uploads/{{product.image}}" alt="{{product.name}}"></a>
+                        <h5>{{ product.name}}</h5>
+                        <span class="product-subtitle text-center">{{product.subtitle}}</span>
+                        <span class="product-price text-center">{{(product.price / 100 )|number_format(2,',', '.')}} € </span>
+                    </div>
                 </div>
             {% endfor %}
         </div> 

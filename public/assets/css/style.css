@@ -41,6 +41,7 @@ body {
 
 .product-item h5 {
     text-transform: uppercase;
+    text-align: center;
     font-size: 0.9em;
     margin-bottom: 0.1em;
 }
@@ -52,4 +53,5 @@ body {
 
 .product-price {
     font-weight: bold;
+    display: block;
 }

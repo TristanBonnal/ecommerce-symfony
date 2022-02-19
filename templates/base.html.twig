@@ -27,7 +27,7 @@
         {% else %}
             {% set margin = 'mt-5' %}
         {% endif %}
-        <div class="container marketing {{margin ?? 0}}">
+        <div class="container {{margin ?? 0}}">
             {% block body %}{% endblock %}
         </div>
     </main>
