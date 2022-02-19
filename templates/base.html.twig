@@ -21,7 +21,7 @@
         {% include "_nav.html.twig" %}
     </header>
 
-    <main role="main">
+    <main class="mb-5" role="main">
         {% if carousel is defined %}
             {% include "_carousel.html.twig" %}
         {% else %}
@@ -29,9 +29,8 @@
         {% endif %}
         <div class="container marketing {{margin ?? 0}}">
             {% block body %}{% endblock %}
-        </div><!-- /.container -->
+        </div>
     </main>
-        <!-- FOOTER -->
         <footer class="footer-custom">
             {% include "_footer.html.twig" %}
         </footer>

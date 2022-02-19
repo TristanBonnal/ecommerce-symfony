@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nos produits{% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="col-md-2">
+        <h3>Catégories</h3>
+        liste
+    </div>
+    <div class="col-md-10">
+            <h3 class="text-center">Nos Produits</h3>
+        <div class="row">
+            {% for product in products %}
+                <div class="col-md-4">
+                    <a class="" href="{{ path('product_show', {slug: product.slug}) }}"><img class="img-fluid" src="/uploads/{{product.image}}" alt="{{product.name}}"></a>
+                    <h5>{{product.name}}</h5>
+                    <span class="product-subtitle">{{product.subtitle}}</span>
+                    <span class="product-price">{{(product.price / 100 )|number_format(2,',', '.')}} € </span>
+                </div>
+            {% endfor %}
+        </div> 
+    </div>
+</div>
+  
+{% endblock %}

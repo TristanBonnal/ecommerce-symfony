@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-5">
+            <img class="img-fluid" src="/uploads/{{product.image}}" alt="{{product.name}}">
+        </div>
+        <div class="col-md-7 my-auto">
+            <h3>{{product.name}}</h3>
+            <p>{{product.subtitle}}</p>
+            <span class="product-price">{{(product.price / 100 )|number_format(2,',', '.')}} € </span>
+            <hr>
+            <p>{{product.description}}</p>
+        <div class="btn btn-outline-success">Ajouter au panier</div>
+        </div>
+    </div>   
+{% endblock %}
