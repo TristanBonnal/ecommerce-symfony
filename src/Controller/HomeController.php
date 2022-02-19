@@ -12,7 +12,7 @@ class HomeController extends AbstractController
     public function index(): Response
     {
         return $this->render('home/index.html.twig', [
-            'carousel' => true
+            'carousel' => true  //Le caroussel ne s'affiche que sur la page d'accueil (voir base.twig)
         ]);
     }
 }

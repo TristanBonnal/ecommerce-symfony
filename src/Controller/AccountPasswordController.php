@@ -10,6 +10,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * Permet la modification du mot de passe d'un utilisateur sur une page dédiée
+ */
 class AccountPasswordController extends AbstractController
 {
     #[Route('/compte/mot-de-passe', name: 'account_password')]
