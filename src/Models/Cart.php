@@ -1,5 +1,5 @@
 <?php
-namespace App\Utils;
+namespace App\Models;
 
 use App\Repository\ProductRepository;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;

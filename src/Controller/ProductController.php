@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Form\SearchType;
 use App\Repository\ProductRepository;
-use App\Utils\Search;
+use App\Models\Search;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

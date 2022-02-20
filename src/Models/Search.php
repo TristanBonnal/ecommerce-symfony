@@ -1,5 +1,5 @@
 <?php
-namespace App\Utils;
+namespace App\Models;
 
 /**
  * Permet de créer un formulaire de recherche grace à un FormType
