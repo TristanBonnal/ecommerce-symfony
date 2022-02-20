@@ -3,7 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Category;
-use App\Service\Search;
+use App\Utils\Search;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -19,7 +19,7 @@ class SearchType extends AbstractType
 {
 
     /**
-     * Permet de paraméter un formualaire custom
+     * Permet de paraméter un formulaire custom
      *
      * @param OptionsResolver $resolver
      * @return void

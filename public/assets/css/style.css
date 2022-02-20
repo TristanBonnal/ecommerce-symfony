@@ -15,6 +15,7 @@
 
 body {
     position: relative;
+    height: 100%;
 }
 
 .footer-custom{
@@ -23,7 +24,6 @@ body {
     bottom: 0;
     width: 100%;
     background-color: rgb(222, 234, 248);
-    margin-top: 10em;
     box-shadow:0px 0px 10px 0.1rem rgba(0, 0, 0, 0.198);
 }
 

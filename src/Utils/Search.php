@@ -1,5 +1,5 @@
 <?php
-namespace App\Service;
+namespace App\Utils;
 
 /**
  * Permet de créer un formulaire de recherche grace à un FormType
