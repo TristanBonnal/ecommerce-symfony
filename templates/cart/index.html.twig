@@ -4,38 +4,50 @@
 
 {% block body %}
 <h3>Mon Panier</h3>
+<a href="{{ path('remove_cart') }}" title="Supprimer tous les articles" class="btn btn-outline-danger float-right"><i class="bi bi-x-square-fill"></i> Réinitialiser mon panier</a>
+
 <p>Voici les articles que vous avez ajoutés</p>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Article</th>
-      <th scope="col">Prix (unité)</th>
-      <th scope="col">Quantité</th>
-      <th scope="col">Total</th>
-    </tr>
-  </thead>
-  <tbody>
-  {% for item in cart %}
-    <tr>
-      <td>
-        <img height="60px" src="/uploads/{{ item.product.image }}" alt="{{ item.product.name }}">
-        {{item.product.name}}
-      </td>
-      <td>{{(item.product.price / 100)|number_format(2,',','.') }} €</td>
-      <td>x {{ item.quantity }}</td>
-      <td>{{ (item.quantity * (item.product.price / 100))|number_format(2,',','.') }} €</td>
-    </tr>
-  {% endfor %}
-  </tbody>
-  <tfoot>
-    <th>Total</th>
-    <td></td>
-    <td>x {{ totalQuantity }}</td>
-    <td>{{ (totalPrice / 100)|number_format(2,',','.') }} €</td>
-  </tfoot>
+<table class="table mt-5">
+    <thead>
+        <tr>
+            <th scope="col">Article</th>
+            <th scope="col">Prix (unité)</th>
+            <th class="text-center" scope="col">Quantité</th>
+            <th scope="col">Total</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for item in cart %}
+        <tr>
+            <td>
+                <img height="60px" src="/uploads/{{ item.product.image }}" alt="{{ item.product.name }}">
+                {{item.product.name}}
+            </td>
+            <td>{{(item.product.price / 100)|number_format(2,',','.') }} €</td>
+            <td class="text-center">
+                <a title="Enlever 1 article" href="{{ path('decrease_item', {id:item.product.id}) }}"><i class="bi bi-dash"></i></a>
+                {{ item.quantity }} 
+                <a title="Ajouter 1 article" href="{{ path('add_to_cart', {id:item.product.id}) }}"><i class="bi bi-plus"></i></a>
+            </td>
+            <td >{{ (item.quantity * (item.product.price / 100))|number_format(2,',','.') }} €</td>
+            <td><a title="Supprimer tous les articles de cette ligne" href="{{ path('remove_cart_item', {id: item.product.id}) }}" class="text-danger"href=""><i class="bi bi-trash"></i></a></td>
+        </tr>
+    {% endfor %}
+    </tbody>
+    <tfoot>
+        <th>Total</th>
+        <td></td>
+        <td class="text-center">  <small>x</small>{{ totalQuantity }}</td>
+        <td>{{ (totalPrice / 100)|number_format(2,',','.') }} €</td>
+    </tfoot>
 </table>
-<a class="btn btn-info">Valider mon panier</a>
+{% if totalQuantity > 0 %}
+        <a title="Valider et passer au paiement" class="btn btn-info"><i class="bi bi-credit-card"></i> Valider mon panier</a>
+{% else %}
+        Votre panier est vide, remplissez le depuis la page <a href="{{ path('product') }}">produits</a>.
+{% endif %}
 
 
 {% endblock %}

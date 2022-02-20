@@ -45,4 +45,22 @@ class Cart
     {
         $this->session->remove('cart');
     }
+
+    public function removeItem($id)
+    {
+        $cart = $this->session->get('cart', []);
+        unset($cart[$id]);
+        $this->session->set('cart', $cart);
+    }
+
+    public function decreaseItem($id)
+    {
+        $cart = $this->session->get('cart', []);
+        if ($cart[$id] < 2) {
+            unset($cart[$id]);
+        } else {
+            $cart[$id]--;
+        }
+        $this->session->set('cart', $cart);
+    }
 }
