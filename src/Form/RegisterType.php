@@ -69,7 +69,10 @@ class RegisterType extends AbstractType
                 ],
             ])
             ->add('submit', SubmitType::class, [
-                'label' => 'Valider'
+                'label' => 'Valider',
+                'attr' => [
+                    'class' => 'btn btn-outline-success'
+                ]
             ])
         ;
     }

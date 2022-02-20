@@ -67,7 +67,10 @@ class ChangePasswordType extends AbstractType
                 ],
             ])
             ->add('submit', SubmitType::class, [
-                'label' => 'Enregistrer modifications'
+                'label' => 'Enregistrer modifications',
+                'attr' => [
+                    'class' => 'btn btn-outline-success'
+                ]
             ])
         ;
     }
