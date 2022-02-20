@@ -24,7 +24,7 @@ class Cart
      * @param int $id
      * @return void
      */
-    public function add($id)
+    public function add(int $id):void
     {
         $cart = $this->session->get('cart', []);
 
@@ -38,24 +38,38 @@ class Cart
 
     }
 
-    public function get()
+    public function get(): array
     {
         return $this->session->get('cart');
     }
 
-    public function remove()
+    public function remove(): void
     {
         $this->session->remove('cart');
     }
 
-    public function removeItem($id)
+
+    /**
+     * Supprime entièrement un produit du panier (quelque soit sa quantité)
+     *
+     * @param int $id
+     * @return void
+     */
+    public function removeItem(int $id): void
     {
         $cart = $this->session->get('cart', []);
         unset($cart[$id]);
         $this->session->set('cart', $cart);
     }
 
-    public function decreaseItem($id)
+
+    /**
+     * Diminue de 1 la quantité d'un produit
+     *
+     * @param int $id
+     * @return void
+     */
+    public function decreaseItem(int $id): void
     {
         $cart = $this->session->get('cart', []);
         if ($cart[$id] < 2) {

@@ -2,7 +2,7 @@
 namespace App\Models;
 
 /**
- * Permet de créer un formulaire de recherche grace à un FormType
+ * Permet de créer un formulaire de recherche grace à un SearchType
  */
 class Search
 {

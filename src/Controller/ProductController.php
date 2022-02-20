@@ -16,7 +16,7 @@ class ProductController extends AbstractController
     public function index(ProductRepository $repository, Request $request): Response
     {
        
-        // Si recherche exécutée, $products contiendra les résultats uniquement
+        // Si recherche exécutée, $products contiendra les résultats filtrés
         $search = new Search();
         $form = $this->createForm(SearchType::class, $search);
         $form->handleRequest($request);
@@ -35,7 +35,7 @@ class ProductController extends AbstractController
     }
 
     #[Route('/articles/{slug}', name: 'product_show')]
-    public function show(ProductRepository $repository, $slug): Response
+    public function show(ProductRepository $repository, string $slug): Response
     {
         $product = $repository->findOneBySlug($slug);
 

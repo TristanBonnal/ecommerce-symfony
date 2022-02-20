@@ -14,8 +14,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 
 /**
- * Formulaire d'inscription créé manuellement
- * Une fois inscris, l'utilisateur est automatiquement autentifié
+ * Formulaire d'inscription créé manuellement.twig
+ * Une fois inscris, l'utilisateur est automatiquement autentifié.
  */
 class RegisterController extends AbstractController
 {

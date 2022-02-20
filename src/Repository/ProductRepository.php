@@ -20,11 +20,12 @@ class ProductRepository extends ServiceEntityRepository
         parent::__construct($registry, Product::class);
     }
 
-    /**Requête custom pour la barre de recherche 
+    /**Requête custom pour la barre de recherche :
+     * Récupérations des produits filtrés par mots-clés et/ou catégories
      * 
      * @return Product[] Returns an array of Product objects
      */
-    public function findWithSearch(Search $search)
+    public function findWithSearch(Search $search): array
     {
         $query = $this->createQueryBuilder('p')
             ->select('c', 'p')
