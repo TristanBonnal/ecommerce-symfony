@@ -4,7 +4,12 @@
 
 {% block body %}
 <h3>Mon Panier</h3>
-<a href="{{ path('remove_cart') }}" title="Supprimer tous les articles" class="btn btn-outline-danger float-right"><i class="bi bi-x-square-fill"></i> Réinitialiser mon panier</a>
+{% if totalQuantity > 0 %}
+    <a href="{{ path('remove_cart') }}" title="Supprimer tous les articles" class="btn btn-outline-danger float-right">
+        <i class="bi bi-x-square-fill"></i> 
+        Réinitialiser mon panier
+    </a>
+{% endif %}
 
 <p>Voici les articles que vous avez ajoutés</p>
 

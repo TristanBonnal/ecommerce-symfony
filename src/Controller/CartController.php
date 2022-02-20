@@ -11,36 +11,20 @@ use Symfony\Component\Routing\Annotation\Route;
 class CartController extends AbstractController
 {
     /**
-     * Récupère le panier en session, puis récupère les objets produits de la bdd
-     * et calcule les totaux
-     *
+     * Récupère un panier détaillé contenant des objets Products et les totaux de quantité et de prix 
+     * 
      * @param Cart $cart
-     * @param ProductRepository $repository
      * @return Response
      */
     #[Route('/mon-panier', name: 'cart')]
-    public function index(Cart $cart, ProductRepository $repository): Response
+    public function index(Cart $cart): Response
     {
-        $cartProducts = [];
-        $totalQuantity = 0;
-        $totalPrice = 0;
-        
-        if ($cart->get()) {
-            foreach ($cart->get() as $id => $quantity) {
-                $currentProduct = $repository->find($id);
-                $cartProducts[] = [
-                    'product' => $currentProduct,
-                    'quantity' => $quantity
-                ];
-                $totalQuantity += $quantity;
-                $totalPrice += $currentProduct->getPrice() * $quantity;
-            }
-        }
+        $cartProducts = $cart->getDetails();
 
         return $this->render('cart/index.html.twig', [
-            'cart' => $cartProducts,
-            'totalQuantity' => $totalQuantity,
-            'totalPrice' => $totalPrice
+            'cart' => $cartProducts['products'],
+            'totalQuantity' => $cartProducts['totals']['quantity'],
+            'totalPrice' =>$cartProducts['totals']['price']
         ]);
     }
 
