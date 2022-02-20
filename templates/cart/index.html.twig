@@ -6,7 +6,7 @@
 <h3>Mon Panier</h3>
 {% if totalQuantity > 0 %}
     <a href="{{ path('remove_cart') }}" title="Supprimer tous les articles" class="btn btn-outline-danger float-right">
-        <i class="bi bi-x-square-fill"></i> 
+        <i class="bi bi-x"></i> 
         Réinitialiser mon panier
     </a>
 {% endif %}
@@ -44,7 +44,7 @@
     <tfoot>
         <th>Total</th>
         <td></td>
-        <td class="text-center">  <small>x</small>{{ totalQuantity }}</td>
+        <td class="text-center">  <small>x</small> {{ totalQuantity }}</td>
         <td>{{ (totalPrice / 100)|number_format(2,',','.') }} €</td>
     </tfoot>
 </table>
