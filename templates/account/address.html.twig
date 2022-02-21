@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes adresses - La Boot'Ique'{% endblock %}
+
+{% block body %}
+    <a href="{{ path('account_address_new') }}" class="btn btn-info btn-sm float-right mt-2">Ajouter une adresse</a>
+    <h2>Gérer mes adresses</h2>
+
+    <div class="row mt-3">
+        {% for address in app.user.addresses %}
+            <div class="col-md-6">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ address.name }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted"></h6>
+                        <p class="card-text">
+                            {{ address.address }},<br>
+                            {{ address.postal }} -
+                            {{ address.city }}<br>
+                            {{ address.country }}
+                        </p>
+                        <a href="{{ path('account_address_update', {id: address.id}) }}" class="card-link">Modifier</a>
+                        <a href="{{ path('account_address_delete', {id: address.id}) }}" class="card-link">Supprimer</a>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+        <p>
+            Vous n'avez ajouté aucune adresse pour le moment.
+        </p>
+    {% endfor %}
+    </div>
+    <a title="Retour vers votre espace membres"href="{{ path('account') }}">Retourner à mon compte</a>
+{% endblock %}

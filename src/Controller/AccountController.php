@@ -26,7 +26,7 @@ class AccountController extends AbstractController
     /**
      * Permet la modification du mot de passe d'un utilisateur sur une page dédiée
      */
-    #[Route('/compte/mot-de-passe', name: 'account-password')]
+    #[Route('/compte/mot-de-passe', name: 'account_password')]
     public function changePassword(Request $request, UserPasswordHasherInterface $passwordHasher, EntityManagerInterface $em): Response
     {
         $user = $this->getUser();
