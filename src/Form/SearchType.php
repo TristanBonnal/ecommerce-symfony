@@ -47,6 +47,7 @@ class SearchType extends AbstractType
                 'label' => false,
                 'required' => false,
                 'class' => Category::class, 
+                'choice_label' => 'name',
                 'multiple' => true,
                 'expanded' => true,
             ])

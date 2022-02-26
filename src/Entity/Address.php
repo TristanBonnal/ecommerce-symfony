@@ -168,4 +168,10 @@ class Address
 
         return $this;
     }
+
+
+    public function getAddressLabel(): string
+    {
+        return "{$this->name}: [br]{$this->address}[br]{$this->city}... ";
+    }
 }

@@ -8,6 +8,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 class AddressController extends AbstractController
@@ -21,7 +22,7 @@ class AddressController extends AbstractController
     }
 
     #[Route('compte/adresses/ajouter', name: 'account_address_new')]
-    public function add(Request $request, EntityManagerInterface $em): Response
+    public function add(Request $request, EntityManagerInterface $em, SessionInterface $session): Response
     {
         $address = new Address();
         $form = $this->createForm(AddressType::class, $address);
@@ -33,6 +34,10 @@ class AddressController extends AbstractController
 
             $em->persist($address);
             $em->flush();
+            if ($session->get('order') === 1) {       //Redirection vers la commande si celle-ci a été amorcée
+                $session->set('order', 0);
+                return $this->redirectToRoute('order');
+            }
             return $this->redirectToRoute('account_address');
         }
 

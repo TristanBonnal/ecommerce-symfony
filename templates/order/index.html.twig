@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ma commande - La Boot'Ique{% endblock %}
+
+{% block body %}
+<h2>Je valide ma commande</h2>
+{% set formHtml %}
+    {{form(form)}}
+    {% endset %}
+{{ formHtml|replace({'[br]' : '<br>'})|raw }}
+{% endblock %}
