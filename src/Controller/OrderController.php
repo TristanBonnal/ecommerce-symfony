@@ -67,7 +67,6 @@ class OrderController extends AbstractController
             $delivery_string .= '<br>' . $address->getCountry();
 
             $cartProducts = $cart->getDetails();
-            dd($cartProducts);
 
             $order = new Order;
             $order
@@ -85,9 +84,9 @@ class OrderController extends AbstractController
                 $orderDetails
                     ->setBindedOrder($order)
                     ->setProduct($item['product']->getName())
-                    ->setQuantity($item['product']->getQuantity())
+                    ->setQuantity($item['quantity'])
                     ->setPrice($item['product']->getPrice())
-                    ->setTotal($item['product']->getPrice() * $item['product']->getQuantity())
+                    ->setTotal($item['product']->getPrice() * $item['quantity'])
                 ;
                 $em->persist($orderDetails);
             }
