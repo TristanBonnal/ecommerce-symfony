@@ -32,12 +32,15 @@ class Order
     #[ORM\Column(type: 'text')]
     private $delivery;
 
-    #[ORM\OneToMany(mappedBy: 'bindedOrder', targetEntity: OderDetails::class)]
-    private $oderDetails;
+    #[ORM\OneToMany(mappedBy: 'bindedOrder', targetEntity: OrderDetails::class)]
+    private $orderDetails;
+
+    #[ORM\Column(type: 'boolean')]
+    private $isPaid;
 
     public function __construct()
     {
-        $this->oderDetails = new ArrayCollection();
+        $this->orderDetails = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -106,31 +109,43 @@ class Order
     }
 
     /**
-     * @return Collection|OderDetails[]
+     * @return Collection|OrderDetails[]
      */
-    public function getOderDetails(): Collection
+    public function getOrderDetails(): Collection
     {
-        return $this->oderDetails;
+        return $this->orderDetails;
     }
 
-    public function addOderDetail(OderDetails $oderDetail): self
+    public function addOderDetail(OrderDetails $oderDetail): self
     {
-        if (!$this->oderDetails->contains($oderDetail)) {
-            $this->oderDetails[] = $oderDetail;
+        if (!$this->orderDetails->contains($oderDetail)) {
+            $this->orderDetails[] = $oderDetail;
             $oderDetail->setBindedOrder($this);
         }
 
         return $this;
     }
 
-    public function removeOderDetail(OderDetails $oderDetail): self
+    public function removeOderDetail(OrderDetails $oderDetail): self
     {
-        if ($this->oderDetails->removeElement($oderDetail)) {
+        if ($this->orderDetails->removeElement($oderDetail)) {
             // set the owning side to null (unless already changed)
             if ($oderDetail->getBindedOrder() === $this) {
                 $oderDetail->setBindedOrder(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getIsPaid(): ?bool
+    {
+        return $this->isPaid;
+    }
+
+    public function setIsPaid(bool $isPaid): self
+    {
+        $this->isPaid = $isPaid;
 
         return $this;
     }
