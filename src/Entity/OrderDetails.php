@@ -2,18 +2,18 @@
 
 namespace App\Entity;
 
-use App\Repository\OderDetailsRepository;
+use App\Repository\OrderDetailsRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: OderDetailsRepository::class)]
-class OderDetails
+#[ORM\Entity(repositoryClass: OrderDetailsRepository::class)]
+class OrderDetails
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\ManyToOne(targetEntity: Order::class, inversedBy: 'oderDetails')]
+    #[ORM\ManyToOne(targetEntity: Order::class, inversedBy: 'orderDetails')]
     #[ORM\JoinColumn(nullable: false)]
     private $bindedOrder;
 
