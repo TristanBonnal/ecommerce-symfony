@@ -48,6 +48,7 @@
         <th>{{ (totalPrice / 100)|number_format(2,',','.') }} €</th>
     </tfoot>
 </table>
+<a class="mb-3 d-block" href="{{ path('product') }}">Continuez mes achats</a>
 {% if totalQuantity > 0 %}
         <a href="{{ path('order')}}"title="Valider puis passer au paiement" class="btn btn-outline-success btn-block"></i> Valider mon panier</a>
 {% else %}

@@ -13,17 +13,19 @@
     </div>
     <div class="col-md-6">
         <b class="summary-label">Récapitulatif :</b>
-        {% for item in cart.products %}
+        <div class="cart-summary">
+            {% for item in cart.products %}
+                <div class="row">
+                    <div class="col-2 my-auto"><img height="50px" src="/uploads/{{ item.product.image }}" alt="{{ item.product.name }}"></div>
+                    <div class="col-8 my-auto">{{ item.product.name }}</div>
+                    <div class="col-2 my-auto">x{{ item.quantity }}</div>
+                </div>
+            {% endfor %}
+            <hr>
             <div class="row">
-                <div class="col-2 my-auto"><img height="60px" src="/uploads/{{ item.product.image }}" alt="{{ item.product.name }}"></div>
-                <div class="col-8 my-auto">{{ item.product.name }}</div>
-                <div class="col-2 my-auto">x{{ item.quantity }}</div>
+                <div class="col-9 font-weight-bold">Total</div>
+                <div class="col-3 font-weight-bold">{{ (totalPrice / 100)|number_format(2,',','.') }} €</div>
             </div>
-        {% endfor %}
-        <hr>
-        <div class="row">
-            <div class="col-9 font-weight-bold">Total</div>
-            <div class="col-3 font-weight-bold">{{ (totalPrice / 100)|number_format(2,',','.') }} €</div>
         </div>
     </div>
 </div>

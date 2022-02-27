@@ -71,9 +71,17 @@ body {
     padding: 1.5em 3em;
     margin-bottom: .5em;
     border-radius: .3em;
+    box-shadow:0px 0px 5px 0.1rem rgba(0, 0, 0, 0.1);
 
 }
 
 #order .form-check:hover {
-    box-shadow:0px 0px 10px 0.1rem rgba(0, 0, 0, 0.15);
+    box-shadow:0px 0px 10px 0.1rem rgba(0, 0, 0, 0.30);
+}
+
+.cart-summary {
+    padding: 1em;
+    background-color: rgba(225, 232, 235, 0.295);
+
+    box-shadow:0px 0px 5px 0.1rem rgba(0, 0, 0, 0.1);
 }
