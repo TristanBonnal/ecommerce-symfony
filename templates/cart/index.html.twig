@@ -49,7 +49,7 @@
     </tfoot>
 </table>
 {% if totalQuantity > 0 %}
-        <a href="{{ path('order')}}"title="Valider et passer au paiement" class="btn btn-outline-success btn-block"><i class="bi bi-credit-card"></i> Valider mon panier</a>
+        <a href="{{ path('order')}}"title="Valider puis passer au paiement" class="btn btn-outline-success btn-block"></i> Valider mon panier</a>
 {% else %}
         Votre panier est vide, remplissez le depuis la page <a href="{{ path('product') }}">produits</a>.
 {% endif %}

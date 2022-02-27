@@ -3,9 +3,11 @@
 namespace App\Form;
 
 use App\Entity\Address;
+use App\Entity\Carrier;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -22,6 +24,19 @@ class OrderType extends AbstractType
                 'choice_label' => 'addressLabel', //closure récupérant une chaine concaténée
                 'choices' => $user->getAddresses(),
                 'expanded' => true
+            ])
+            ->add('carriers', EntityType::class, [
+                'label' => 'Choisissez votre transporteur',
+                'required' => true,
+                'class' => Carrier::class,
+                'choice_label' => 'carrierLabel',
+                'expanded' => true
+            ])
+            ->add('submit', SubmitType::class, [
+                'label' => 'Passer au paiment', 
+                'attr' => [
+                    'class' => "btn btn-outline-success btn-block"
+                ]
             ])
         ;
     }

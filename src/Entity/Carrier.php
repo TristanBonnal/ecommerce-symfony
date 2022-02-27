@@ -62,4 +62,10 @@ class Carrier
 
         return $this;
     }
+
+    public function getCarrierLabel(): ?string
+    {
+        $price = number_format($this->price, 2);
+        return "{$this->name}: [br]{$this->description}[br] $price € ";
+    }
 }
