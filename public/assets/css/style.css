@@ -61,12 +61,12 @@ body {
     /* margin-bottom: 0.3em; */
 }
 
-.summary-label {
+strong {
     display: block;
     padding: 7px 0;
 }
 
-#order .form-check {
+[name="order"] .form-check {
     background-color: rgba(225, 232, 235, 0.295);
     padding: 1.5em 3em;
     margin-bottom: .5em;
@@ -75,13 +75,12 @@ body {
 
 }
 
-#order .form-check:hover {
+[name="order"] .form-check:hover {
     box-shadow:0px 0px 10px 0.1rem rgba(0, 0, 0, 0.30);
 }
 
 .cart-summary {
     padding: 1em;
     background-color: rgba(225, 232, 235, 0.295);
-
     box-shadow:0px 0px 5px 0.1rem rgba(0, 0, 0, 0.1);
 }

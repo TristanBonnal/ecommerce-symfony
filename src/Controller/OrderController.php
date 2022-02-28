@@ -98,7 +98,8 @@ class OrderController extends AbstractController
         
         return $this->renderForm('order/add.html.twig', [
             'cart' => $cartProducts,
-            'totalPrice' =>$cartProducts['totals']['price']
+            'totalPrice' =>$cartProducts['totals']['price'],
+            'order' => $order
         ]);
     }
 }

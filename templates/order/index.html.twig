@@ -13,7 +13,7 @@
         {{ formHtml|replace({'[br]' : '<br>'})|raw }}
     </div>
     <div class="col-md-6">
-        <b class="summary-label">Récapitulatif :</b>
+        <strong class="summary-label">Récapitulatif :</strong>
         <div class="cart-summary">
             {% for item in cart.products %}
                 <div class="row">

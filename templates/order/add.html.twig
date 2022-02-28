@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ma commande - La Boot'Ique{% endblock %}
+
+{% block body %}
+<h2>Mon récapitulatif</h2>
+<div class="row">
+    <div class="col-md-5">
+    {# TODO #}
+        <strong>Mon adresse de livraison</strong><br>
+        <strong>Transporteur</strong>
+    </div>
+    <div class="col-md-7">
+        <strong class="summary-label">Vos articles</strong>
+        <div class="cart-summary">
+            {% for item in cart.products %}
+                <div class="row">
+                    <div class="col-2 my-auto"><img height="50px" src="/uploads/{{ item.product.image }}" alt="{{ item.product.name }}"></div>
+                    <div class="col-8 my-auto">{{ item.product.name }}</div>
+                    <div class="col-2 my-auto">x{{ item.quantity }}</div>
+                </div>
+            {% endfor %}
+            <hr>
+            <div class="row">
+                <div class="col-9 font-weight-bold">Total articles</div>
+                <div class="col-3">{{ (totalPrice / 100)|number_format(2,',','.') }} €</div>
+            </div>
+            <div class="row">
+                <div class="col-9 font-weight-bold">Livraison</div>
+            <div class="col-3">{{ order.carrierPrice|number_format(2,',','.')}} €</div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-9 font-weight-bold">Total commande</div>
+                <div class="col-3 font-weight-bold">{{ ((totalPrice / 100) + order.carrierPrice)|number_format(2,',','.') }} €</div>
+            </div>
+        </div>
+    </div>
+    <a href="" class="btn btn-outline-success btn-block mt-4">Passer au paiement</a>
+</div>
+
+{% endblock %}
