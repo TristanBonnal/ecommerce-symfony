@@ -6,9 +6,11 @@
 <h2>Mon récapitulatif</h2>
 <div class="row">
     <div class="col-md-5">
-    {# TODO #}
         <strong>Mon adresse de livraison</strong><br>
+        <p>{{order.delivery|raw}}</p>
+
         <strong>Transporteur</strong>
+        <p>{{order.carrierName}}</p>
     </div>
     <div class="col-md-7">
         <strong class="summary-label">Vos articles</strong>

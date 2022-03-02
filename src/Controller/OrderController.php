@@ -46,8 +46,8 @@ class OrderController extends AbstractController
      * @param Request $request
      * @return Response
      */
-    #[Route('/commande/recap', name: 'order_add')]
-    public function add(Cart $cart, Request $request, EntityManagerInterface $em): Response
+    #[Route('/commande/recap', name: 'order_add', methods: 'POST')]
+    public function summary(Cart $cart, Request $request, EntityManagerInterface $em): Response
     {
         $cartProducts = $cart->getDetails();
 
@@ -92,14 +92,13 @@ class OrderController extends AbstractController
             }
 
             $em->flush();
+
+            return $this->renderForm('order/add.html.twig', [
+                'cart' => $cartProducts,
+                'totalPrice' =>$cartProducts['totals']['price'],
+                'order' => $order
+            ]);
         }
-
-
-        
-        return $this->renderForm('order/add.html.twig', [
-            'cart' => $cartProducts,
-            'totalPrice' =>$cartProducts['totals']['price'],
-            'order' => $order
-        ]);
+        $this->redirectToRoute('cart');
     }
 }

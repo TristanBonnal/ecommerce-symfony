@@ -18,7 +18,7 @@ class OrderType extends AbstractType
         $user = $options['user'];
         $builder
             ->add('addresses', EntityType::class, [
-                'label' => 'Choisissez votre adresse de livraison',
+                'label' => false,
                 'required' => true,
                 'class' => Address::class,
                 'choice_label' => 'addressLabel', //closure récupérant une chaine concaténée
