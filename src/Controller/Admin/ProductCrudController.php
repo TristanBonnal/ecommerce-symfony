@@ -22,7 +22,7 @@ class ProductCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextField::new('name'),
+            TextField::new('name',),
             SlugField::new('slug')->setTargetFieldName('name'),
             ImageField::new('image')
                 ->setBasePath('uploads/')

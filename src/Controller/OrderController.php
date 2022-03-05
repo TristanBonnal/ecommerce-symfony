@@ -15,13 +15,21 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class OrderController extends AbstractController
 {
+    /**
+     * Récupération du panier, choix de l'adresse et du transporteur
+     *
+     * @param SessionInterface $session
+     * @param Cart $cart
+     * @return Response
+     */
     #[Route('/commande', name: 'order')]
     public function index(SessionInterface $session, Cart $cart): Response
     {
         $user = $this->getUser();
         $cartProducts = $cart->getDetails();
         
-        if (!$user->getAddresses()->getValues()) {      //Redirection si utilisateur n'a pas encore d'adresse
+        //Redirection si utilisateur n'a pas encore d'adresse
+        if (!$user->getAddresses()->getValues()) {      //getValues() Récupère directement les valeurs d'une collection d'objet
             $session->set('order', 1);
             return $this->redirectToRoute('account_address_new');
         }
@@ -49,8 +57,10 @@ class OrderController extends AbstractController
     #[Route('/commande/recap', name: 'order_add', methods: 'POST')]
     public function summary(Cart $cart, Request $request, EntityManagerInterface $em): Response
     {
-        $cartProducts = $cart->getDetails();
+         //Récupération du panier en session
+        $cartProducts = $cart->getDetails();   
 
+        //Vérification qu'un formulaire a bien été envoyé précédemment
         $form = $this->createForm(OrderType::class, null, [
             'user' => $this->getUser()     
         ]); 
@@ -68,6 +78,7 @@ class OrderController extends AbstractController
 
             $cartProducts = $cart->getDetails();
 
+            //Création de la commande avec les infos formulaire
             $order = new Order;
             $order
                 ->setUser($this->getUser())
@@ -79,6 +90,7 @@ class OrderController extends AbstractController
             ;
             $em->persist($order);
 
+            //Création des lignes de détails pour chacun des produits de la commande
             foreach ($cartProducts['products'] as $item) {
                 $orderDetails = new OrderDetails();
                 $orderDetails
@@ -99,6 +111,7 @@ class OrderController extends AbstractController
                 'order' => $order
             ]);
         }
+        //Si pas de formulaire, page non accessible, et donc redirection vers le panier
         $this->redirectToRoute('cart');
     }
 }

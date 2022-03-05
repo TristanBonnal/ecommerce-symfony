@@ -149,4 +149,14 @@ class Order
 
         return $this;
     }
+
+    public function getTotal():float
+    {
+        $total = 0;
+        foreach ($this->getOrderDetails() as $product) {
+            $total += $product->getTotal();
+        }
+        return $total;
+  
+    }
 }

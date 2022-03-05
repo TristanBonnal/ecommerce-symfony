@@ -21,7 +21,7 @@ class OrderType extends AbstractType
                 'label' => false,
                 'required' => true,
                 'class' => Address::class,
-                'choice_label' => 'addressLabel', //closure récupérant une chaine concaténée
+                'choice_label' => 'addressLabel', //callback récupérant une chaine concaténée
                 'choices' => $user->getAddresses(),
                 'expanded' => true
             ])
