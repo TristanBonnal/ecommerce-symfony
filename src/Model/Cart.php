@@ -1,5 +1,5 @@
 <?php
-namespace App\Models;
+namespace App\Model;
 
 use App\Repository\ProductRepository;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -38,11 +38,22 @@ class Cart
 
     }
 
+    /**
+     * Récupère le panier en session
+     *
+     * @return array
+     */
     public function get(): array
     {
         return $this->session->get('cart');
     }
 
+
+    /**
+     * Supprime entièrement le panier en session
+     *
+     * @return void
+     */
     public function remove(): void
     {
         $this->session->remove('cart');

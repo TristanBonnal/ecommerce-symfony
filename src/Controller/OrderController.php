@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Entity\Order;
 use App\Entity\OrderDetails;
 use App\Form\OrderType;
-use App\Models\Cart;
+use App\Model\Cart;
 use Doctrine\ORM\EntityManagerInterface;
 use Stripe\Checkout\Session;
 use Stripe\Stripe;

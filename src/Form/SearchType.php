@@ -3,7 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Category;
-use App\Models\Search;
+use App\Model\Search;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
