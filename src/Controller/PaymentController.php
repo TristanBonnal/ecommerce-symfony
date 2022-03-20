@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Model\Cart;
+use App\Repository\OrderRepository;
 use Stripe\Checkout\Session;
 use Stripe\Stripe;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -11,10 +12,16 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class PaymentController extends AbstractController
 {
-    #[Route('/commande/checkout', name: 'checkout')]
-    public function payment(Cart $cart): Response
+    #[Route('/commande/checkout/{reference}', name: 'checkout')]
+    public function payment(Cart $cart, OrderRepository $repository, $reference): Response
     {
-        // Récupération des produits du panier et formattage dans un tableau pour Stripe
+        // Récupération des produits de la dernière commande et formattage dans un tableau pour Stripe
+        $order = $repository->findOneByReference($reference);
+        if (!$order) {
+            throw $this->createNotFoundException('Cette commande n\'existe pas');
+        }
+        
+        dd($order);
         $products = $cart->getDetails()['products'];
         $productsForStripe = [];
         foreach ($products as $item) {

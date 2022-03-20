@@ -38,7 +38,7 @@
             </div>
         </div>
     </div>
-    <a href="{{ path('checkout') }}" class="btn btn-outline-success btn-block mt-4"><i class="bi bi-credit-card-2-back"></i> Payer</a>
+    <a href="{{ path('checkout', {reference: order.reference}) }}" class="btn btn-outline-success btn-block mt-4"><i class="bi bi-credit-card-2-back"></i> Payer</a>
 </div>
 
 {% endblock %}
