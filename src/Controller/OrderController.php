@@ -7,8 +7,6 @@ use App\Entity\OrderDetails;
 use App\Form\OrderType;
 use App\Model\Cart;
 use Doctrine\ORM\EntityManagerInterface;
-use Stripe\Checkout\Session;
-use Stripe\Stripe;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -115,34 +113,5 @@ class OrderController extends AbstractController
         }
         //Si pas de formulaire, page non accessible, et donc redirection vers le panier
         return $this->redirectToRoute('cart');
-    }
-
-    #[Route('/commande/stripe', name: 'order_payment', methods: 'GET')]
-    public function payment() 
-    {
-        Stripe::setApiKey('sk_test_51Kb6uhClAQQ2TXfzOspWIks7VFbXX5e5ZTr5c4VCIQfNJATKvQZDHBODlaDkCnNmYntKUQLZK8YF4UbNPA5gMWzg00RHLAzE0G');
-        header('Content-Type: application/json');
-
-        $YOUR_DOMAIN = 'http://localhost:8000/public';
-        
-        $checkout_session = Session::create([
-            'line_items' => [[
-                'price_data' => [
-                    'currency' => 'eur',
-                    'unit_amount' => 1800,
-                    'product_data' => [
-                        'name' => 'test'
-                    ]
-                ],
-                'quantity' => 1
-            ]],
-            'mode' => 'payment',
-            'success_url' => $YOUR_DOMAIN . '/success.html',
-            'cancel_url' => $YOUR_DOMAIN . '/cancel.html',
-        ]);
-
-        dump($checkout_session);
-        header("HTTP/1.1 303 See Other");
-        header("Location: " . $checkout_session->url);
     }
 }
