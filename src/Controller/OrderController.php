@@ -80,13 +80,15 @@ class OrderController extends AbstractController
 
             //Création de la commande avec les infos formulaire
             $order = new Order;
+            $date = new \DateTime;
             $order
                 ->setUser($this->getUser())
-                ->setCreatedAt(new \DateTime)
+                ->setCreatedAt($date)
                 ->setCarrierName($form->get('carriers')->getData()->getName())
                 ->setCarrierPrice($form->get('carriers')->getData()->getPrice())
                 ->setDelivery($delivery_string)
                 ->setIsPaid(0)
+                ->setReference($date->format('YmdHis') . '-' . uniqid())
             ;
             $em->persist($order);
 
