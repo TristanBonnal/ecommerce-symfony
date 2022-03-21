@@ -54,8 +54,8 @@ class PaymentController extends AbstractController
         $checkout_session = Session::create([
             'line_items' => $productsForStripe,
             'mode' => 'payment',
-            'success_url' => $YOUR_DOMAIN . '/commande/valide',
-            'cancel_url' => $YOUR_DOMAIN . '/commande/echec',
+            'success_url' => $YOUR_DOMAIN . '/commande/valide/{CHECKOUT_SESSION_ID}',
+            'cancel_url' => $YOUR_DOMAIN . '/commande/echec/{CHECKOUT_SESSION_ID}',
         ]);
 
         return $this->redirect($checkout_session->url);
