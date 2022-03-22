@@ -3,9 +3,19 @@
 {% block title %}Ma commande - La Boot'Ique{% endblock %}
 
 {% block body %}
-  <section>
+    <h2>Confirmation de votre commande</h2>
     <p>
-      Commande validée !
+        Bonjour {{order.user.firstname}} {{order.user.lastname}}, <br>
+        Nous vous remercions de votre commande n° <b>{{order.reference}}</b>.<br>
+        Une confirmation vient de vous être envoyé par mail. <br>
     </p>
-  </section>
+    <hr>
+    <p>
+        Votre commande sera livrée par {{order.carrierName}} à l'adresse suivante: <br>
+        {{order.delivery|raw}}
+    </p>
+    <hr>
+    <p>
+    Pour suive votre commande, rendez-vous dans votre <a href="{{ path('account') }}">compte</a>.
+    </p>
 {% endblock %}
