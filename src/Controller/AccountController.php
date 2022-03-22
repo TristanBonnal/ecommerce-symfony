@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Form\ChangePasswordType;
+use App\Repository\OrderRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -56,6 +57,18 @@ class AccountController extends AbstractController
 
         return $this->renderForm('account/password.html.twig', [
             'form' => $form
+        ]);
+    }
+
+    /**
+     * Permet la modification du mot de passe d'un utilisateur sur une page dédiée
+     */
+    #[Route('/compte/commandes', name: 'account_order')]
+    public function showOrders(OrderRepository $repository): Response
+    {
+        $orders = $repository->findPaidOrdersByUser($this->getUser());
+        return $this->render('account/orders.html.twig', [
+            'orders' => $orders
         ]);
     }
 }
