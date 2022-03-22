@@ -3,9 +3,11 @@
 {% block title %}Ma commande - La Boot'Ique{% endblock %}
 
 {% block body %}
-  <section>
+    <h2>Annulation de votre commande</h2>
     <p>
-      Commande annulée !
+        Bonjour {{order.user.firstname}} {{order.user.lastname}}, <br>
+        Votre paiement pour la commande n° <b>{{order.reference}}</b> n'a pas abouti.<br>
     </p>
-  </section>
+    <hr>
+    <a class="btn btn-outline-success" href="{{ path('order') }}">Réessayer</a>
 {% endblock %}

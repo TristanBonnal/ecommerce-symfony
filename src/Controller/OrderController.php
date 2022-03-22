@@ -27,6 +27,11 @@ class OrderController extends AbstractController
     {
         $user = $this->getUser();
         $cartProducts = $cart->getDetails();
+
+        // Redirection si panier vide
+        if (empty($cartProducts['products'])) {   
+            return $this->redirectToRoute('product');
+        }
         
         //Redirection si utilisateur n'a pas encore d'adresse
         if (!$user->getAddresses()->getValues()) {      //getValues() Récupère directement les valeurs d'une collection d'objet
