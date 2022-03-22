@@ -166,6 +166,16 @@ class Order
   
     }
 
+    public function getTotalQuantity():float
+    {
+        $total = 0;
+        foreach ($this->getOrderDetails() as $product) {
+            $total += $product->getQuantity();
+        }
+        return $total;
+  
+    }
+
     public function getReference(): ?string
     {
         return $this->reference;

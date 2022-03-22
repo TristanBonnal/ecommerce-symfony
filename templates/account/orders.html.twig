@@ -4,43 +4,31 @@
 
 {% block body %}
     <h2>Voir mes commandes</h2>
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">Articles</th>
-                <th scope="col">Total</th>
-                <th scope="col">Passée le </th>
-                <th scope="col">Référence</th>
-            </tr>
-        </thead>
-    <tbody>
-        <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td
-        <td>@mdo</td>
-        </tr>
-        <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-        </tr>
-        <tr>
-        <th scope="row">3</th>
-        <td>Larry</td>
-        <td>the Bird</td>
-        <td>@twitter</td>
-        </tr>
-    </tbody>
-    </table>
-    {% for order in orders %}
-        <pre>
-            {{ dump(order) }}
-        </pre>
+    {% if orders %}
+        <table class="table mt-4">
+            <thead>
+                <tr>
+                    <th scope="col">Articles</th>
+                    <th scope="col">Total</th>
+                    <th scope="col">Passée le </th>
+                    <th scope="col">Référence</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                    <tr>
+                        <td>{{order.totalQuantity}}</td>
+                        <td>{{((order.carrierPrice + order.total) / 100)|number_format(2,',','.') }} €</td>
+                        <td>{{order.createdAt|date('d/m/Y')}}</td>
+                        <td><span class="badge badge-secondary">{{order.reference}}</span></td>
+                        <td><a href="{{ path('account_order', {'reference' : order.reference}) }}">Consulter commande</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     {% else %}
-        <p>Vous n'avez effectué aucune commande pour le moment.</p>
-    {% endfor %}
-    </div>
+        <p>Vous n'avez effectué aucune commande pour le moment.</p>        
+    {% endif %}
     <a title="Retour vers votre espace membres"href="{{ path('account') }}">Retourner à mon compte</a>
 {% endblock %}

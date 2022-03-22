@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Order;
 use App\Form\ChangePasswordType;
 use App\Repository\OrderRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -61,14 +62,28 @@ class AccountController extends AbstractController
     }
 
     /**
-     * Permet la modification du mot de passe d'un utilisateur sur une page dédiée
+     * Affiche la vue de toutes les commandes d'un utilisateur
      */
-    #[Route('/compte/commandes', name: 'account_order')]
+    #[Route('/compte/commandes', name: 'account_orders')]
     public function showOrders(OrderRepository $repository): Response
     {
         $orders = $repository->findPaidOrdersByUser($this->getUser());
         return $this->render('account/orders.html.twig', [
             'orders' => $orders
+        ]);
+    }
+
+    /**
+     * Affiche une commande
+     */
+    #[Route('/compte/commandes/{reference}', name: 'account_order')]
+    public function showOrder(Order $order): Response
+    {
+        if (!$order || $order->getUser() != $this->getUser()) {
+            throw $this->createNotFoundException('Commande innaccessible');
+        }
+        return $this->render('account/order.html.twig', [
+            'order' => $order
         ]);
     }
 }
