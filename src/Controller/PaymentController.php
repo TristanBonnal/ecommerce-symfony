@@ -40,7 +40,7 @@ class PaymentController extends AbstractController
         $productsForStripe[] = [
             'price_data' => [
                 'currency' => 'eur',
-                'unit_amount' => $order->getCarrierPrice()*100,
+                'unit_amount' => $order->getCarrierPrice(),
                 'product_data' => [
                     'name' => $order->getCarrierName()
                 ]
@@ -65,7 +65,7 @@ class PaymentController extends AbstractController
     }
 
     #[Route('/commande/valide/{stripeSession}', name: 'payment_success')]
-    public function paymentSuccess(OrderRepository $repository, $stripeSession, EntityManagerInterface $em) 
+    public function paymentSuccess(OrderRepository $repository, $stripeSession, EntityManagerInterface $em, Cart $cart) 
     {
         $order = $repository->findOneByStripeSession($stripeSession);
         if (!$order || $order->getUser() != $this->getUser()) {
@@ -75,6 +75,9 @@ class PaymentController extends AbstractController
             $order->setIsPaid(true);
             $em->flush();
         }
+
+        // Suppression du panier une fois la commande validée
+        $cart->remove();    
         return $this->render('payment/success.html.twig', [
             'order' => $order
         ]);
