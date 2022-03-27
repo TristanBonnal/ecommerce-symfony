@@ -15,7 +15,7 @@ use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 
 /**
  * Formulaire d'inscription créé manuellement
- * Une fois inscris, l'utilisateur est automatiquement autentifié.
+ * Une fois inscris, l'utilisateur est automatiquement authentifié.
  */
 class RegisterController extends AbstractController
 {
