@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\RegisterType;
 use App\Security\LoginAuthenticator;
+use App\Service\Mail;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -32,6 +33,11 @@ class RegisterController extends AbstractController
 
             $em->persist($user);
             $em->flush();
+
+            // Envoi mail confirmation
+            $content = "Bonjour {$user->getFirstname()} nous vous remercions de votre inscription";
+            (new Mail)->send($user->getEmail(), $user->getFirstname(), "Bienvenue sur la Boot'ique", $content);
+
             // Loggin auto
             return $userAuthenticator->authenticateUser(
                 $user,
