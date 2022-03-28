@@ -28,17 +28,11 @@ class RegisterController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $user
-            ->setPassword(
-                $userPasswordHasher->hashPassword(
-                    $user,
-                    $form->get('password')->getData()
-                )
-            )
-            ;
+            $user->setPassword($userPasswordHasher->hashPassword($user,$form->get('password')->getData()));
 
             $em->persist($user);
             $em->flush();
+            // Loggin auto
             return $userAuthenticator->authenticateUser(
                 $user,
                 $authenticator,
