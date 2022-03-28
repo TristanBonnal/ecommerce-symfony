@@ -14,6 +14,6 @@ class MailerController extends AbstractController
     {
         $mail = new Mail();
         $mail->send();
-
+        return $this->redirectToRoute('home');
     }
 }

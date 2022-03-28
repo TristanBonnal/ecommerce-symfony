@@ -21,11 +21,11 @@ class Mail
                 ],
                 'To' => [
                   [
-                    'Email' => "bonnal.tristan@hotmail.fr",
-                    'Name' => "Tristan"
+                    'Email' => "bonnal.tristan91@gmail.com",
+                    'Name' => "Julien"
                   ]
                 ],
-                'Subject' => "Greetings from Mailjet.",
+                'Subject' => "hello bitch",
                 'TextPart' => "My first Mailjet email",
                 'HTMLPart' => "<h3>Dear passenger 1, welcome to <a href='https://www.mailjet.com/'>Mailjet</a>!</h3><br />May the delivery force be with you!",
                 'CustomID' => "AppGettingStartedTest"
