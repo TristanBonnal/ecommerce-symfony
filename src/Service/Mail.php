@@ -9,33 +9,34 @@ class Mail
     private $api_key = "54abf7bd7c959b059abdee6778722a2c";
     private $api_key_secret = "89a12b1d1e22e0c08167316926b02e1e";
 
-    public function send(string $emailTo, string $name, string $subject, string $content)
+    public function send($toEmail, $toName, $subject, $content)
     {
         $mj = new Client($this->api_key, $this->api_key_secret,true,['version' => 'v3.1']);
-        $body = [
-            'Messages' => [
+        $body = 
+        [
+            'Messages' => 
+            [
                 [
-                    'From' => [
+                    'From' => 
+                    [
                         'Email' => "bonnal.tristan@hotmail.fr",
-                        'Name' => "Tristan",
+                        'Name' => "La Boot'ique"
                     ],
-                    'To' => [
+                    'To' => 
+                    [
                         [
-                            'Email' => $emailTo,
-                            'Name' => $name
+                            'Email' => $toEmail,
+                            'Name' => $toName
                         ]
                     ],
                     'TemplateID' => 3732103,
                     'TemplateLanguage' => true,
-                    'CustomID' => "AppGettingStartedTest",
                     'Subject' => $subject,
-                    'Variables' => [
-                        'content' => $content,
-                    ]
+                    'Variables' => ['content' => $content]
                 ]
             ]
         ];
         $response = $mj->post(Resources::$Email, ['body' => $body]);
-        ($response->success()) && dd($response->getData());
+        ($response->success()) && dump($response->getData());
     }
 }

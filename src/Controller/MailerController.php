@@ -13,9 +13,7 @@ class MailerController extends AbstractController
     public function index(): Response
     {
         $mail = new Mail();
-        $mail->send('bonnal.tristan91@gmail.com', 'Tristan Bonnal', 'Lien mot de passe', 'Voici votre lien');
-        return $this->render('mailer/index.html.twig', [
-            'controller_name' => 'MailerController',
-        ]);
+        $mail->send('bonnal.tristan91@gmail.com', 'Tristan', 'test', 'contenu');
+        return $this->redirectToRoute('home');
     }
 }
