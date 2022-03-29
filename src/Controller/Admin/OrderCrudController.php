@@ -39,7 +39,7 @@ class OrderCrudController extends AbstractCrudController
             DateTimeField::new('createdAt', 'Créée le'),
             TextField::new('user.fullname', 'Acheteur'),
             MoneyField::new('total')->setCurrency('EUR'),
-            MoneyField::new('carrierPrice')->setCurrency('EUR'),
+            MoneyField::new('carrierPrice', 'Frais livraison')->setCurrency('EUR'),
             BooleanField::new('isPaid', 'Payée'),
             ArrayField::new('orderDetails', 'Produits achetés')->hideOnIndex()
         ];
