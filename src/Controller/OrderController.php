@@ -92,7 +92,7 @@ class OrderController extends AbstractController
                 ->setCarrierName($form->get('carriers')->getData()->getName())
                 ->setCarrierPrice($form->get('carriers')->getData()->getPrice())
                 ->setDelivery($delivery_string)
-                ->setIsPaid(0)
+                ->setState(0)
                 ->setReference($date->format('YmdHis') . '-' . uniqid())
             ;
             $em->persist($order);

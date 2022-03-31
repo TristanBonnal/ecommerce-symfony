@@ -25,9 +25,9 @@ class OrderRepository extends ServiceEntityRepository
     public function findPaidOrdersByUser($user)
     {
         return $this->createQueryBuilder('o')
-            ->andWhere('o.isPaid = :val')
+            ->andWhere('o.state > :val')
             ->andWhere('o.user = :user')
-            ->setParameter('val', true)
+            ->setParameter('val', 0)
             ->setParameter('user', $user)
             ->orderBy('o.createdAt', 'DESC')
             ->getQuery()

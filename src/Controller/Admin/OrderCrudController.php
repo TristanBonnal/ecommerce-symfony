@@ -8,6 +8,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
@@ -35,14 +36,26 @@ class OrderCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id'),
+            IdField::new('id')->hideOnForm(),
             DateTimeField::new('createdAt', 'Créée le'),
             TextField::new('user.fullname', 'Acheteur'),
-            MoneyField::new('total')->setCurrency('EUR'),
+            MoneyField::new('total')->setCurrency('EUR')->hideOnForm(),
             MoneyField::new('carrierPrice', 'Frais livraison')->setCurrency('EUR'),
-            BooleanField::new('isPaid', 'Payée'),
-            ArrayField::new('orderDetails', 'Produits achetés')->hideOnIndex()
+            ChoiceField::new('state', 'Etat')->setChoices([
+                'Non payée' => 0,
+                'Payée' => 1,
+                'Préparation en cours' => 2,
+                'Expédiée' => 3,
+            ]
+            ),
+            ArrayField::new('orderDetails', 'Produits achetés')->hideOnIndex()->hideOnForm()
         ];
     }
+
+    // public function configureActions(Actions $actions)
+    // {
+    //     return $actions
+    //                 ->add('')
+    // }
 
 }
