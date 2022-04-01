@@ -9,6 +9,7 @@
             <thead>
                 <tr>
                     <th scope="col">Articles</th>
+                    <th scope="col">Statut</th>
                     <th scope="col">Total</th>
                     <th scope="col">Passée le </th>
                     <th scope="col">Référence</th>
@@ -19,6 +20,10 @@
                 {% for order in orders %}
                     <tr>
                         <td>{{order.totalQuantity}}</td>
+                        <td>{{
+                            order.state == 1 ? 'Paiment accepté' :
+                            order.state == 2 ? 'En préparation' : 'Expédiée'
+                        }}</td>
                         <td>{{((order.carrierPrice + order.total) / 100)|number_format(2,',','.') }} €</td>
                         <td>{{order.createdAt|date('d/m/Y')}}</td>
                         <td><span class="badge badge-secondary">{{order.reference}}</span></td>

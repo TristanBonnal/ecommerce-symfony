@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Order;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
@@ -25,6 +26,7 @@ class OrderCrudController extends AbstractCrudController
     {
         return $actions
             ->add('index', 'detail')
+            ->remove(Crud::PAGE_INDEX, Action::NEW)
             ;
     }
 
@@ -51,11 +53,5 @@ class OrderCrudController extends AbstractCrudController
             ArrayField::new('orderDetails', 'Produits achetés')->hideOnIndex()->hideOnForm()
         ];
     }
-
-    // public function configureActions(Actions $actions)
-    // {
-    //     return $actions
-    //                 ->add('')
-    // }
 
 }

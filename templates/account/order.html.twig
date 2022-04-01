@@ -7,6 +7,10 @@
     <hr>
     <p>
         <b>Commande passée le :</b> {{order.createdAt|date('d/m/Y')}} <br>
+        <b>Statut:</b> {{
+            order.state == 1 ? 'Paiment accepté' :
+            order.state == 2 ? 'En préparation' : 'Expédiée'
+        }}<br>
         <b>Référence : </b><span>{{order.reference}}</span><br>
         <b>Transporteur:</b> {{order.carrierName}}<br>
     </p>
