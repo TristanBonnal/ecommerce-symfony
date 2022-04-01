@@ -35,6 +35,9 @@ class Product
     #[ORM\JoinColumn(nullable: false)]
     private $category;
 
+    #[ORM\Column(type: 'boolean')]
+    private $isInHome;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -120,6 +123,18 @@ class Product
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    public function getIsInHome(): ?bool
+    {
+        return $this->isInHome;
+    }
+
+    public function setIsInHome(bool $isInHome): self
+    {
+        $this->isInHome = $isInHome;
 
         return $this;
     }
