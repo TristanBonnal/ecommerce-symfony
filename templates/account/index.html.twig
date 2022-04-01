@@ -12,6 +12,11 @@
         </div>
     {% endfor %}
     <div class="list-group">
+        {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('admin') }}" class="list-group-item list-group-item-action">
+            Back office
+        </a> 
+        {% endif %}
         <a href="{{ path('account_orders') }}" class="list-group-item list-group-item-action">
             Mes commandes
         </a>
