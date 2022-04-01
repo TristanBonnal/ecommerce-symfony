@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Headers;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
@@ -15,6 +16,15 @@ class HeadersCrudController extends AbstractCrudController
         return Headers::class;
     }
 
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->setEntityLabelInSingular('Bannière')
+            ->setEntityLabelInPlural('Bannières')
+            ->setDefaultSort(['id' => 'DESC'])
+        ;
+    }
+    
     
     public function configureFields(string $pageName): iterable
     {
