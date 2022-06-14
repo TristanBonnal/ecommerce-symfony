@@ -54,7 +54,7 @@ class PaymentController extends AbstractController
         Stripe::setApiKey('sk_test_51Kb6uhClAQQ2TXfzOspWIks7VFbXX5e5ZTr5c4VCIQfNJATKvQZDHBODlaDkCnNmYntKUQLZK8YF4UbNPA5gMWzg00RHLAzE0G');
         header('Content-Type: application/json');
 
-        $YOUR_DOMAIN = 'http://localhost:8000';
+        $YOUR_DOMAIN = 'https://ecommerce.tristan-bonnal.fr';
         
         // Création de la session Stripe avec les données du panier
         $checkout_session = Session::create([
